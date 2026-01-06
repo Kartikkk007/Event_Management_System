@@ -1,0 +1,61 @@
+/* LOGIN PAGE WRAPPER */
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  font-family: Arial, sans-serif;
+}
+
+/* LOGIN CARD */
+.login-card {
+  background: white;
+  padding: 30px 35px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* TITLE */
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e1b4b;
+}
+
+/* INPUTS */
+.login-card input,
+.login-card select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #c7d2fe;
+  font-size: 14px;
+}
+
+/* BUTTON */
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.login-card button:hover {
+  background: #3730a3;
+}
+
+/* SMALL TEXT (optional) */
+.login-footer {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #475569;
+}

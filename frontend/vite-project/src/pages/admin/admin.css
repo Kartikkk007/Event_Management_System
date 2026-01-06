@@ -1,0 +1,46 @@
+.admin {
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  font-family: Arial, sans-serif;
+}
+
+.admin h1,
+.admin h2,
+.admin h3 {
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.admin button {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.admin button:hover {
+  background: #334155;
+}
+
+.admin .card {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-left: 5px solid #0f172a;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin label {
+  font-weight: bold;
+}
+
+.admin input {
+  padding: 6px;
+  margin-left: 8px;
+}
