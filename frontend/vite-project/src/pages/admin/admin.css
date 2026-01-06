@@ -1,46 +1,315 @@
+/* ===== CSS RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .admin {
   min-height: 100vh;
-  padding: 30px;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.admin h1,
-.admin h2,
+/* ===== CONTAINER & CARDS ===== */
+.admin > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== TYPOGRAPHY ===== */
+.admin h1 {
+  font-size: 2.5rem;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin h2 {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #667eea;
+  position: relative;
+}
+
+.admin h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #764ba2;
+  animation: expandWidth 0.6s ease-out;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
 .admin h3 {
-  color: #0f172a;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #4a5568;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
+/* ===== BUTTONS ===== */
 .admin button {
-  background: #0f172a;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 9px 14px;
-  margin: 5px;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.admin button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .admin button:hover {
-  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 }
 
-.admin .card {
+.admin button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+/* ===== USER/VENDOR CARDS ===== */
+.admin > div > div[style*="border"] {
   background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-left: 5px solid #0f172a;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 15px !important;
+  padding: 1.5rem !important;
+  margin: 1rem 0 !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: cardSlideIn 0.4s ease-out backwards;
 }
 
+.admin > div > div[style*="border"]:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.admin > div > div[style*="border"]:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.admin > div > div[style*="border"]:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.admin > div > div[style*="border"]:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  border-color: #667eea !important;
+}
+
+.admin p {
+  color: #4a5568;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.admin p strong {
+  color: #2d3748;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 80px;
+}
+
+/* ===== FORM ELEMENTS ===== */
 .admin label {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #4a5568;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-.admin input {
-  padding: 6px;
-  margin-left: 8px;
+.admin label:hover {
+  color: #667eea;
+}
+
+.admin input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.admin input[type="number"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  margin-left: 0.75rem;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+.admin input[type="number"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* ===== LISTS ===== */
+.admin ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin ul li {
+  background: #f7fafc;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+  animation: listItemFade 0.4s ease-out backwards;
+}
+
+.admin ul li:nth-child(1) { animation-delay: 0.05s; }
+.admin ul li:nth-child(2) { animation-delay: 0.1s; }
+.admin ul li:nth-child(3) { animation-delay: 0.15s; }
+.admin ul li:nth-child(4) { animation-delay: 0.2s; }
+.admin ul li:nth-child(5) { animation-delay: 0.25s; }
+.admin ul li:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes listItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin ul li:hover {
+  background: #edf2f7;
+  transform: translateX(5px);
+  border-left-color: #764ba2;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .admin {
+    padding: 1rem;
+  }
+
+  .admin > div {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+
+  .admin h1 {
+    font-size: 2rem;
+  }
+
+  .admin h2 {
+    font-size: 1.5rem;
+  }
+
+  .admin button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .admin > div > div[style*="border"]:hover {
+    transform: none;
+  }
+}
+
+/* ===== LOADING ANIMATION (OPTIONAL) ===== */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ===== SMOOTH SCROLLING ===== */
+.admin {
+  scroll-behavior: smooth;
 }

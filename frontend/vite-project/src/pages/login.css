@@ -1,61 +1,367 @@
-/* LOGIN PAGE WRAPPER */
+/* ===== CSS RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #6366f1, #4338ca);
-  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* LOGIN CARD */
+/* ===== ANIMATED BACKGROUND CIRCLES ===== */
+.login::before,
+.login::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 20s infinite ease-in-out;
+}
+
+.login::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
+}
+
+.login::after {
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-30px, 80px) scale(0.9);
+  }
+  75% {
+    transform: translate(30px, -50px) scale(1.05);
+  }
+}
+
+/* ===== LOGIN CARD ===== */
 .login-card {
-  background: white;
-  padding: 30px 35px;
-  width: 350px;
-  border-radius: 10px;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 420px;
+  animation: cardEntrance 0.8s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
-/* TITLE */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== DECORATIVE GRADIENT LINE ===== */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 0 0 10px 10px;
+  animation: expandLine 0.8s ease-out 0.3s backwards;
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+  }
+}
+
+/* ===== HEADING ===== */
 .login-card h2 {
+  font-size: 2.5rem;
+  color: #2d3748;
   text-align: center;
-  margin-bottom: 20px;
-  color: #1e1b4b;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInDown 0.6s ease-out 0.2s backwards;
 }
 
-/* INPUTS */
-.login-card input,
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== INPUT FIELDS ===== */
+.login-card input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+  background: white;
+  color: #2d3748;
+  animation: slideInLeft 0.5s ease-out backwards;
+}
+
+.login-card input:nth-of-type(1) {
+  animation-delay: 0.3s;
+}
+
+.login-card input:nth-of-type(2) {
+  animation-delay: 0.4s;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.login-card input::placeholder {
+  color: #a0aec0;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.login-card input:hover {
+  border-color: #cbd5e0;
+}
+
+/* ===== SELECT DROPDOWN ===== */
 .login-card select {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #c7d2fe;
-  font-size: 14px;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  background: white;
+  color: #2d3748;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+  animation: slideInLeft 0.5s ease-out 0.5s backwards;
 }
 
-/* BUTTON */
+.login-card select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.login-card select:hover {
+  border-color: #cbd5e0;
+}
+
+/* ===== SUBMIT BUTTON ===== */
 .login-card button {
   width: 100%;
-  padding: 10px;
-  background: #4f46e5;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 0.5s ease-out 0.6s backwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.login-card button:hover::before {
+  width: 400px;
+  height: 400px;
 }
 
 .login-card button:hover {
-  background: #3730a3;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-/* SMALL TEXT (optional) */
+.login-card button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+/* ===== LOGIN FOOTER ===== */
 .login-footer {
-  margin-top: 15px;
   text-align: center;
-  font-size: 13px;
-  color: #475569;
+  color: #718096;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  animation: fadeIn 0.6s ease-out 0.7s backwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .login {
+    padding: 1rem;
+  }
+
+  .login-card {
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+  }
+
+  .login-card h2 {
+    font-size: 2rem;
+  }
+
+  .login-card input,
+  .login-card select,
+  .login-card button {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .login::before {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    left: -100px;
+  }
+
+  .login::after {
+    width: 250px;
+    height: 250px;
+    bottom: -125px;
+    right: -125px;
+  }
+}
+
+/* ===== FOCUS VISIBLE FOR ACCESSIBILITY ===== */
+.login-card input:focus-visible,
+.login-card select:focus-visible,
+.login-card button:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* ===== ADDITIONAL ENHANCEMENTS ===== */
+.login-card input:valid {
+  border-color: #48bb78;
+}
+
+.login-card input:invalid:not(:placeholder-shown) {
+  border-color: #f56565;
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+* {
+  scroll-behavior: smooth;
+}
+
+/* ===== HOVER GLOW EFFECT ===== */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+  }
 }
